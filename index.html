@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dilip Ventures - Premium Real Estate</title>
+    <!-- Load Tailwind CSS via CDN for rapid, responsive styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for aesthetic enhancements */
+        /* Dark Navy: #202a54 (Primary BG) */
+        /* Vibrant Blue: #1179ec (Highlight) */
+        /* Forest Green: #2c9143 (Success/Review) */
+        /* Bright Yellow: #f6d200 (Accent) */
+        
+        /* Apply smooth scroll behavior globally */
+        html {
+            scroll-behavior: smooth;
+        }
+
+        .shadow-custom {
+            box-shadow: 0 10px 30px -5px rgba(32, 42, 84, 0.15); /* #202a54 based shadow */
+        }
+
+        .project-card {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+        
+        /* Custom gradient for CTA button */
+        .btn-gradient {
+            background-image: linear-gradient(to right, #1179ec 0%, #4692f0 100%);
+            transition: all 0.3s ease-in-out;
+        }
+        .btn-gradient:hover {
+            background-position: right center;
+            opacity: 0.95;
+        }
+
+        /* --- Scroll Reveal Animations (New) --- */
+        .scroll-reveal-item {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.7s ease-out, transform 0.7s ease-out;
+        }
+        .scroll-reveal-item.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* --- Hero Text Fade/Slide Animations (Existing) --- */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animate-fade-in-down {
+            animation: fadeInDown 1s ease-out 0.2s forwards;
+            opacity: 0; /* Hide initially */
+        }
+        .animate-fade-in-up {
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            opacity: 0; /* Hide initially */
+        }
+
+        /* Fixed Bottom Bar Styling (Hidden on large screens, visible on mobile) */
+        .fixed-contact-bar {
+            z-index: 50; /* Above everything else */
+            display: none;
+        }
+        @media (max-width: 767px) {
+            .fixed-contact-bar {
+                display: flex;
+            }
+            /* Add padding to the body so the bottom bar doesn't cover content */
+            body {
+                padding-bottom: 5rem; 
+            }
+        }
+    </style>
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Luxury Real Estate Landing Page</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom Gradient Overlay for Hero Image */
+        .hero-overlay {
+            background: linear-gradient(180deg, rgba(32, 42, 84, 0.75) 0%, rgba(17, 121, 236, 0.5) 100%);
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+<!-- 1. HEADER SECTION (Now featuring Gold Accents) -->
+    <header id="home" class="sticky top-0 z-50 bg-white shadow-lg">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <nav class="flex items-center justify-between h-24"> <!-- Increased height from h-20 to h-24 to accommodate the larger logo -->
+                <!-- Logo Area -->
+                <a href="#" class="flex items-center space-x-2">
+                    <!-- Replace this placeholder URL with your actual logo's URL -->
+                    <img src="images/logo.jpg" 
+                         alt="Company Logo" 
+                         class="h-11 md:h-14 w-auto rounded-md transition duration-300 transform hover:scale-105"> <!-- Logo size increased here: h-11 (mobile) and md:h-14 (desktop) -->
+                </a>
+
+                <!-- Navigation Links (Desktop) -->
+                <div class="hidden md:flex space-x-2 text-[#202a54] font-semibold">
+                    <!-- Hover text color changed to Gold (#b38f4b) -->
+                    <a href="#home" class="px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-[#b38f4b] transition duration-200">Home</a>
+                    <a href="#projects" class="px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-[#b38f4b] transition duration-200">Projects</a>
+                    <a href="#about" class="px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-[#b38f4b] transition duration-200">About Us</a>
+                    <a href="#contact" class="px-4 py-2 rounded-lg hover:bg-gray-100 hover:text-[#b38f4b] transition duration-200">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button (md:hidden) -->
+                <button id="menu-button" class="md:hidden text-[#202a54] p-2 rounded-lg hover:bg-gray-100 transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+                    </svg>
+                </button>
+            </nav>
+            
+            <!-- Mobile Menu Dropdown -->
+            <div id="mobile-menu" class="hidden md:hidden absolute left-0 w-full bg-white shadow-xl border-t border-gray-100 py-2">
+                <!-- Hover background changed to Gold (#b38f4b) with white text for premium contrast -->
+                <a href="#home" class="block px-6 py-3 text-[#202a54] font-medium hover:bg-[#b38f4b] hover:text-white transition">Home</a>
+                <a href="#projects" class="block px-6 py-3 text-[#202a54] font-medium hover:bg-[#b38f4b] hover:text-white transition">Projects</a>
+                <a href="#about" class="block px-6 py-3 text-[#202a54] font-medium hover:bg-[#b38f4b] hover:text-white transition">About Us</a>
+                <a href="#contact" class="block px-6 py-3 text-[#202a54] font-medium hover:bg-[#b38f4b] hover:text-white transition">Contact</a>
+            </div>
+        </div>
+    </header>
+
+
+    <!-- 2. HERO SECTION (The content you requested) -->
+    <section class="relative h-[60vh] md:h-[80vh] flex items-center justify-center text-center overflow-hidden">
+        <!-- Background Image -->
+        <div class="absolute inset-0">
+            <!-- Placeholder Image - Replace with a high-res real estate photo (e.g., a city skyline or luxury interior) -->
+            <img src="images/banner.jpg"
+                 alt="Luxury Bangalore property skyline" 
+                 class="w-full h-full object-cover">
+            
+            <!-- Dark Overlay for better text contrast -->
+            <div class="absolute inset-0 hero-overlay"></div>
+        </div>
+
+        <!-- Content Container -->
+        <div class="relative z-10 p-6 max-w-4xl mx-auto">
+            <h1 class="text-4xl sm:text-5xl lg:text-7xl font-extrabold text-white leading-tight mb-4 drop-shadow-lg">
+                Find Your <span class="text-[#f6d200] italic">Dream Home</span> in Bangalore
+            </h1>
+            <p class="text-lg md:text-xl text-gray-200 mb-8 font-light drop-shadow-md">
+                A curated selection of RERA-approved luxury apartments and high-value investment villas in premier locales.
+            </p>
+            
+            <!-- Call to Action Button -->
+            <a href="#projects" 
+               class="inline-flex items-center justify-center px-8 py-3 border border-transparent text-base font-bold rounded-xl shadow-2xl text-[#202a54] bg-[#f6d200] hover:bg-yellow-400 md:py-4 md:text-lg md:px-10 transition duration-300 transform hover:scale-[1.03] focus:outline-none focus:ring-4 focus:ring-[#f6d200]/50">
+                View Available Projects
+            </a>
+        </div>
+    </section>
+    
+    <!-- 3. Projects/Other sections would follow here -->
+    
+<script>
+    // Simple JavaScript for mobile menu toggle
+    document.getElementById('menu-button').addEventListener('click', function() {
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenu.classList.toggle('hidden');
+    });
+</script>
+
+</body>
+</html>
+
+
+    <!-- 2. ABOUT US SECTION (Updated with Founder Photo and detailed text) -->
+    <section id="about" class="py-16 bg-white scroll-reveal-item">
+        <div class="container mx-auto px-6">
+            <header class="text-center mb-12">
+                <h3 class="text-[#1179ec] text-sm font-semibold uppercase tracking-wider">Meet the Vision</h3>
+                <h2 class="text-4xl font-extrabold text-[#b38f4b] mt-2 mb-6">Redefining Real Estate Experience</h2>
+            </header>
+            
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-10 items-center max-w-6xl mx-auto">
+                <!-- Founder Photo Column -->
+                <div class="lg:col-span-1 flex justify-center">
+                    <img src="images/dilip.png"
+                         alt="Dilip Ventures Founder" 
+                         class="w-56 h-56 md:w-64 md:h-64 object-cover rounded-full shadow-2xl border-4 border-[#b38f4b] transition duration-500 hover:scale-105">
+                </div>
+                
+                <!-- Text Content Column -->
+                <div class="lg:col-span-2 text-center lg:text-left">
+                    <h3 class="text-2xl font-bold text-[#202a54] mb-4">Dilip R, CEO & Founder</h3>
+                    <p class="text-lg text-gray-700 mb-6">
+                         <strong>Dilip Ventures</strong>, led by <strong>Dilip R</strong>  , brings over 5 years of experience in the real estate industry. We specialize in providing exceptional service and guidance for luxury properties, ensuring every client finds the perfect home or investment. Our dedicated team is committed to offering personalized support, expert advice, and a seamless experience, making your property journey smooth and rewarding. We take pride in understanding our clients’ unique needs and delivering solutions that exceed expectations. From property selection to final acquisition, Dilip Venture S is your trusted partner in real estate success.
+                    <p class="text-base text-gray-600 mb-4">
+                        With over a decade of successful property investments and advisory roles across Bangalore, Dilip has curated a unique portfolio focusing solely on RERA-approved, high-growth potential residential and commercial units. Our mission is to secure your future by making your property journey seamless, transparent, and rewarding.
+                    </p>
+                    <!-- Key metric highlight -->
+                    <div class="inline-block py-2 px-6 rounded-full bg-[#f6d200]/20 text-[#202a54] font-semibold text-sm">
+                        10+ Years of Trust | 500+ Happy Families
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+   <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Updated Projects Section</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Shadow for Project Cards */
+        .shadow-custom {
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        .project-card:hover {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body class="font-sans">
+
+    <!-- 3. FEATURED PROJECTS SECTION (All buttons now link to WhatsApp) -->
+    <section id="projects" class="py-16 bg-gray-50 scroll-reveal-item">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <header class="text-center mb-12">
+                <h3 class="text-[#1179ec] text-sm font-semibold uppercase tracking-wider">Invest Smart</h3>
+                <h2 class="text-4xl font-extrabold text-[#b38f4b] mt-2">Premium Projects in Bangalore</h2>
+            </header>
+
+            <!-- Filter Controls (Left as placeholder) -->
+            <div class="flex justify-center mb-10 space-x-4">
+                <button class="px-6 py-2 rounded-full font-medium text-white bg-[#1179ec] shadow-lg shadow-[#1179ec]/50 transition">properties</button>
+            </div>
+
+            <!-- Project Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <!-- Project Card 1: Shobha indraprasta -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-custom flex flex-col">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/600x400/1179ec/ffffff?text=shobha+indraprasta" alt="shobha indraprasta" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#2c9143] text-white text-xs font-semibold px-3 py-1 rounded-full">RERA Approved</span>
+                        <span class="absolute top-3 right-3 bg-[#1179ec] text-white text-xs font-semibold px-3 py-1 rounded-full">Under Construction</span>
+                    </div>
+                    
+                    <div class="p-5 flex-grow flex flex-col">
+                        <p class="text-sm text-gray-500 mb-1">rajajinagar, Bangalore</p>
+                        <h3 class="text-xl font-bold text-[#202a54] mb-4">shobha Indraprasta</h3>
+                        <p class="text-sm text-gray-600 mb-4">By: Shobha Indraprasta</p>
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-4 border-t border-gray-100 mt-auto">
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Area</span><span class="text-base font-semibold text-gray-800">1025 - 1722 Sqft</span></div>
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Config</span><span class="text-base font-semibold text-gray-800">2-3 BHK</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Enquire Now Button 1 (Using 917259718729) -->
+                    <div class="p-5 border-t border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <span class="text-2xl font-extrabold text-[#b38f4b] leading-none">2.28 Cr <span class="text-base font-medium text-gray-500 block leading-none mt-1">Onwards</span></span>
+                        <a id="whatsapp-vbhx" 
+                           href="https://wa.me/917259718729?text=Hello%2C%20I%27m%20interested%20in%20shobha%20Indraprasta%20in%20rajajinagar.%20Please%20send%20me%20details." 
+                           target="_blank" 
+                           class="text-white bg-[#b38f4b] hover:bg-[#b38f4b] font-medium py-3 px-4 rounded-lg shadow-lg transition flex items-center text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.05 3.63C17.02 3.63 21.05 7.66 21.05 12.64C21.05 17.61 17.02 21.64 12.05 21.64C10.51 21.64 8.98 21.23 7.62 20.45L6.96 20.08L3.92 20.84L4.72 17.99L4.25 17.27C3.41 15.84 3 14.24 3 12.64C3 7.66 7.03 3.63 12.05 3.63ZM16.59 14.97C16.32 15.68 15.7 16.34 14.73 16.71C13.78 17.08 12.83 17.26 11.88 17.26C9.9 17.26 8.1 16.59 6.74 15.23C5.37 13.87 4.7 12.07 4.7 10.09C4.7 9.14 4.88 8.19 5.25 7.22C5.62 6.25 6.28 5.63 7.01 5.36C7.3 5.26 7.63 5.26 7.91 5.38C8.18 5.48 8.41 5.7 8.54 5.97C8.74 6.34 8.78 6.74 8.66 7.15C8.54 7.55 8.28 7.92 8.08 8.13C7.88 8.33 7.74 8.52 7.74 8.71C7.74 8.9 7.85 9.17 7.96 9.43C8.07 9.69 8.27 10.03 8.56 10.46C8.84 10.89 9.21 11.36 9.68 11.83C10.15 12.3 10.62 12.67 11.05 12.96C11.48 13.25 11.82 13.45 12.08 13.56C12.34 13.67 12.61 13.78 12.8 13.78C13.17 13.78 13.55 13.69 13.91 13.49C14.32 13.37 14.72 13.41 15.09 13.61C15.36 13.74 15.58 13.97 15.68 14.24C15.8 14.52 15.8 14.85 15.68 15.14C15.42 15.82 16.29 16.38 16.59 14.97Z" /></svg>
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Brigade Eternia -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-custom flex flex-col">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/600x400/202a54/ffffff?text=Brigade+Eternia" alt="Brigade Eternia" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#2c9143] text-white text-xs font-semibold px-3 py-1 rounded-full">RERA Approved</span>
+                        <span class="absolute top-3 right-3 bg-red-500 text-white text-xs font-semibold px-3 py-1 rounded-full">New Launch</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <p class="text-sm text-gray-500 mb-1">Kaggadasapura, Bangalore</p>
+                        <h3 class="text-xl font-bold text-[#202a54] mb-4">Brigade Eternia</h3>
+                        <p class="text-sm text-gray-600 mb-4">By: Brigade Group</p>
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-4 border-t border-gray-100 mt-auto">
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Area</span><span class="text-base font-semibold text-gray-800">1635 - 2510 Sqft</span></div>
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Config</span><span class="text-base font-semibold text-gray-800">2.5 - 4 BHK</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Enquire Now Button 2 (Using 917259718729) -->
+                    <div class="p-5 border-t border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <span class="text-2xl font-extrabold text-[#b38f4b] leading-none">2.28 Cr <span class="text-base font-medium text-gray-500 block leading-none mt-1">Onwards</span></span>
+                        <a id="whatsapp-brigade" 
+                           href="https://wa.me/917259718729?text=Hello%2C%20I%27m%20interested%20in%20Brigade%20Eternia%20in%20Kaggadasapura.%20Please%20send%20me%20details." 
+                           target="_blank" 
+                           class="text-white bg-[#b38f4b] hover:bg-[#b38f4b] font-medium py-3 px-4 rounded-lg shadow-lg transition flex items-center text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.05 3.63C17.02 3.63 21.05 7.66 21.05 12.64C21.05 17.61 17.02 21.64 12.05 21.64C10.51 21.64 8.98 21.23 7.62 20.45L6.96 20.08L3.92 20.84L4.72 17.99L4.25 17.27C3.41 15.84 3 14.24 3 12.64C3 7.66 7.03 3.63 12.05 3.63ZM16.59 14.97C16.32 15.68 15.7 16.34 14.73 16.71C13.78 17.08 12.83 17.26 11.88 17.26C9.9 17.26 8.1 16.59 6.74 15.23C5.37 13.87 4.7 12.07 4.7 10.09C4.7 9.14 4.88 8.19 5.25 7.22C5.62 6.25 6.28 5.63 7.01 5.36C7.3 5.26 7.63 5.26 7.91 5.38C8.18 5.48 8.41 5.7 8.54 5.97C8.74 6.34 8.78 6.74 8.66 7.15C8.54 7.55 8.28 7.92 8.08 8.13C7.88 8.33 7.74 8.52 7.74 8.71C7.74 8.9 7.85 9.17 7.96 9.43C8.07 9.69 8.27 10.03 8.56 10.46C8.84 10.89 9.21 11.36 9.68 11.83C10.15 12.3 10.62 12.67 11.05 12.96C11.48 13.25 11.82 13.45 12.08 13.56C12.34 13.67 12.61 13.78 12.8 13.78C13.17 13.78 13.55 13.69 13.91 13.49C14.32 13.37 14.72 13.41 15.09 13.61C15.36 13.74 15.58 13.97 15.68 14.24C15.8 14.52 15.8 14.85 15.68 15.14C15.42 15.82 16.29 16.38 16.59 14.97Z" /></svg>
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Phoenix One West -->
+                <div class="project-card bg-white rounded-xl overflow-hidden shadow-custom flex flex-col">
+                    <div class="relative h-48 bg-gray-100">
+                        <img src="https://placehold.co/600x400/f6d200/202a54?text=Phoenix+One+West" alt="Phoenix One West" class="w-full h-full object-cover">
+                        <span class="absolute top-3 left-3 bg-[#2c9143] text-white text-xs font-semibold px-3 py-1 rounded-full">RERA Approved</span>
+                    </div>
+                    <div class="p-5 flex-grow flex flex-col">
+                        <p class="text-sm text-gray-500 mb-1">rajajinagar, Bangalore</p>
+                        <h3 class="text-xl font-bold text-[#202a54] mb-4">Phoenix One West</h3>
+                        <p class="text-sm text-gray-600 mb-4">By: Phoenix</p>
+                        <div class="grid grid-cols-2 gap-y-3 gap-x-4 pt-4 border-t border-gray-100 mt-auto">
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Area</span><span class="text-base font-semibold text-gray-800">1627 - 3000 Sqft</span></div>
+                            <div class="text-left"><span class="text-xs text-gray-400 block uppercase">Config</span><span class="text-base font-semibold text-gray-800">2 - 4 BHK</span></div>
+                        </div>
+                    </div>
+                    
+                    <!-- WhatsApp Enquire Now Button 3 (Using 917259718729) -->
+                    <div class="p-5 border-t border-gray-100 bg-gray-50 flex justify-between items-center">
+                        <span class="text-2xl font-extrabold text-[#b38f4b] leading-none">5.26 Cr <span class="text-base font-medium text-gray-500 block leading-none mt-1">Onwards</span></span>
+                        <a id="whatsapp-phoenix" 
+                           href="https://wa.me/917259718729?text=Hello%2C%20I%27m%20interested%20in%20Phoenix%20One%20West%20in%20rajajinagar.%20Please%20send%20me%20details." 
+                           target="_blank" 
+                           class="text-white bg-[#b38f4b] hover:bg-[#b38f4b] font-medium py-3 px-4 rounded-lg shadow-lg transition flex items-center text-sm">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-2" fill="currentColor" viewBox="0 0 24 24"><path d="M12.05 3.63C17.02 3.63 21.05 7.66 21.05 12.64C21.05 17.61 17.02 21.64 12.05 21.64C10.51 21.64 8.98 21.23 7.62 20.45L6.96 20.08L3.92 20.84L4.72 17.99L4.25 17.27C3.41 15.84 3 14.24 3 12.64C3 7.66 7.03 3.63 12.05 3.63ZM16.59 14.97C16.32 15.68 15.7 16.34 14.73 16.71C13.78 17.08 12.83 17.26 11.88 17.26C9.9 17.26 8.1 16.59 6.74 15.23C5.37 13.87 4.7 12.07 4.7 10.09C4.7 9.14 4.88 8.19 5.25 7.22C5.62 6.25 6.28 5.63 7.01 5.36C7.3 5.26 7.63 5.26 7.91 5.38C8.18 5.48 8.41 5.7 8.54 5.97C8.74 6.34 8.78 6.74 8.66 7.15C8.54 7.55 8.28 7.92 8.08 8.13C7.88 8.33 7.74 8.52 7.74 8.71C7.74 8.9 7.85 9.17 7.96 9.43C8.07 9.69 8.27 10.03 8.56 10.46C8.84 10.89 9.21 11.36 9.68 11.83C10.15 12.3 10.62 12.67 11.05 12.96C11.48 13.25 11.82 13.45 12.08 13.56C12.34 13.67 12.61 13.78 12.8 13.78C13.17 13.78 13.55 13.69 13.91 13.49C14.32 13.37 14.72 13.41 15.09 13.61C15.36 13.74 15.58 13.97 15.68 14.24C15.8 14.52 15.8 14.85 15.68 15.14C15.42 15.82 16.29 16.38 16.59 14.97Z" /></svg>
+                            Enquire Now
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Loan Section</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom styles for a professional look */
+        .gradient-bg {
+            background-image: linear-gradient(to right bottom, #e9c581,#b38f4b); /* Emerald Gradient */
+        }
+        .whatsapp-hover:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 15px -3px rgba(5, 150, 105, 0.5), 0 4px 6px -2px rgba(5, 150, 105, 0.05);
+        }
+        .inter-font {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-green': '#059669',
+                        'accent-blue': '#3b82f6',
+                        'dark-bg': '#1f2937',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-50 inter-font">
+
+    <!-- HOME LOAN SECTION -->
+    <section class="py-16 sm:py-24 px-4">
+        <div class="max-w-4xl mx-auto">
+            <div class="bg-white shadow-2xl rounded-xl overflow-hidden md:flex md:items-center">
+
+                <!-- Left Column: Image/Icon Placeholder -->
+                <div class="md:w-1/2 p-6 md:p-10 gradient-bg flex flex-col justify-center items-center text-white">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-16 w-16 mb-4" viewBox="0 0 24 24" fill="currentColor">
+                        <path fill-rule="evenodd" d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25zM12.75 6a.75.75 0 00-1.5 0v6c0 .414.336.75.75.75h3.75a.75.75 0 000-1.5h-3v-5.25z" clip-rule="evenodd" />
+                    </svg>
+                    <h3 class="text-3xl font-bold mb-2">Your Dream Home Awaits!</h3>
+                    <p class="text-sm opacity-90 text-center">Get customized financial solutions tailored to your needs.</p>
+                </div>
+
+                <!-- Right Column: Details and CTA -->
+                <div class="md:w-1/2 p-6 sm:p-8 md:p-10">
+                    <h2 class="text-3xl font-extrabold text-gray-900 mb-6">Home Loan Solutions</h2>
+
+                    <ul class="space-y-3 text-gray-700 mb-8">
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-green mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.106a2.003 2.003 0 00-1.516-1.488A11.104 11.104 0 0012 2.25a11.104 11.104 0 00-7.07 2.153 2.003 2.003 0 00-1.516 1.488 11.104 11.104 0 00.121 16.516l11.082-11.082z" />
+                            </svg>
+                            <span class="text-base font-medium">Lowest Interest Rates Guaranteed</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-green mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                            </svg>
+                            <span class="text-base font-medium">Flexible Repayment Tenure (Up to 30 Years)</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-primary-green mr-3 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8c1.657 0 3 .895 3 2s-1.343 2-3 2h-1v2h2m-6-2a2 2 0 002 2h1a2 2 0 002-2V8a2 2 0 00-2-2H9a2 2 0 00-2 2v12z" />
+                            </svg>
+                            <span class="text-base font-medium">Quick and Easy Digital Processing</span>
+                        </li>
+                    </ul>
+
+                    <!-- WhatsApp CTA Button -->
+                    <!-- IMPORTANT: Replace the phone number and customize the message below -->
+                    <a href="https://wa.me/917259718729?text=Hello%2C%20I%20am%20interested%20in%20applying%20for%20a%20Home%20Loan.%20Please%20guide%20me%20through%20the%20process."
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       class="whatsapp-hover transition duration-300 ease-in-out w-full flex items-center justify-center px-6 py-3 border border-transparent text-lg font-bold rounded-lg text-white gradient-bg shadow-md">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 mr-3" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M12.04 2.16c-5.46 0-9.87 4.41-9.87 9.87 0 1.74.45 3.39 1.3 4.86L2.09 22l5.05-1.32c1.47.85 3.12 1.3 4.87 1.3 5.46 0 9.87-4.41 9.87-9.87S17.5 2.16 12.04 2.16zm0 18c-1.57 0-3.1-.4-4.44-1.16l-.32-.19-3.25.85.87-3.15-.2-.32c-.78-1.34-1.19-2.87-1.19-4.45 0-4.52 3.67-8.19 8.19-8.19 2.2 0 4.27.86 5.82 2.41a8.17 8.17 0 012.41 5.82c0 4.52-3.67 8.19-8.19 8.19zm4.86-5.49c-.27-.13-1.58-.78-1.82-.87-.24-.09-.41-.13-.59.13-.18.27-.69.87-.85 1.05-.16.18-.33.2-.61.05-.28-.14-1.18-.44-2.25-1.4-1.66-1.46-2.21-2.45-2.48-2.9-.27-.45-.03-.7-.2-.87-.16-.18-.36-.44-.54-.66-.18-.22-.38-.18-.54-.18-.16 0-.34-.02-.51-.02-.18 0-.47.05-.72.31-.25.26-.97.94-.97 2.29 0 1.35.99 2.65 1.13 2.84.14.19 1.93 2.95 4.69 4.13 2.76 1.18 2.95.83 3.48.78.53-.05 1.58-.64 1.8-1.25.22-.61.22-1.13.15-1.25-.07-.12-.24-.19-.51-.32z"/>
+                        </svg>
+                        Apply on WhatsApp
+                    </a>
+                    <p class="text-xs text-gray-500 mt-2 text-center">Fast response and direct assistance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- END HOME LOAN SECTION -->
+
+    <!-- 4. AWARDS, RECOGNITION & CERTIFICATIONS SECTION (New) -->
+    <section id="awards" class="py-16 bg-white scroll-reveal-item">
+        <div class="container mx-auto px-6">
+            <header class="text-center mb-12">
+                <h3 class="text-[#1179ec] text-sm font-semibold uppercase tracking-wider">Trusted Credentials</h3>
+                <h2 class="text-4xl font-extrabold text-[#b38f4b] mt-2">Awards, Recognition & Certifications</h2>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-10 max-w-5xl mx-auto">
+                
+                <!-- Awards Block -->
+                <div class="text-center p-6 rounded-xl bg-gray-50 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#f6d200] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M11.049 2.152A1.5 1.5 0 0112 1.353l1.002.799 1.954 1.157 2.11.833a1.5 1.5 0 011.815 1.815l.833 2.11 1.157 1.954.799 1.002a1.5 1.5 0 010 1.905l-.799 1.002-1.157 1.954-.833 2.11a1.5 1.5 0 01-1.815 1.815l-2.11.833-1.954 1.157-1.002.799a1.5 1.5 0 01-1.905 0l-1.002-.799-1.954-1.157-2.11-.833a1.5 1.5 0 01-1.815-1.815l-.833-2.11-1.157-1.954-.799-1.002a1.5 1.5 0 010-1.905l.799-1.002 1.157-1.954.833-2.11a1.5 1.5 0 011.815-1.815l2.11-.833 1.954-1.157z"/></svg>
+                    <h4 class="text-xl font-bold text-[#202a54] mb-2">Top Real Estate Advisor 2023</h4>
+                    <p class="text-sm text-gray-600">Recognized by the Bangalore Property Council for client satisfaction and ethical practices.</p>
+                </div>
+
+                <!-- Recognition Block -->
+                <div class="text-center p-6 rounded-xl bg-gray-50 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#1179ec] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.275a1.996 1.996 0 00-2.175-2.175L12 5.828 7.357 3.632a2 2 2 00-2.31 1.764l-1.35 15.011a1 1 0 00.957 1.189L12 21.85l7.306 1.35a1 1 0 00.957-1.189l-1.35-15.011z"/></svg>
+                    <h4 class="text-xl font-bold text-[#202a54] mb-2">RERA Compliance Excellence</h4>
+                    <p class="text-sm text-gray-600">A strict policy of only recommending RERA-approved properties for client security.</p>
+                </div>
+                
+                <!-- Certifications Block -->
+                <div class="text-center p-6 rounded-xl bg-gray-50 shadow-inner">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-[#2c9143] mx-auto mb-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 11c0 1.258-2 2-2 2s2 0 2 2m0-4v-4m-7 8h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/></svg>
+                    <h4 class="text-xl font-bold text-[#202a54] mb-2">Certified Investment Consultant</h4>
+                    <p class="text-sm text-gray-600">Our advisory team is certified in real estate financial and legal advisory services.</p>
+                </div>
+
+            </div>
+            
+            <footer class="mt-12 text-center">
+                 <p class="text-sm text-gray-500 font-semibold uppercase">Partnered with Top 10 Developers and Crisil-Rated Projects</p>
+            </footer>
+        </div>
+    </section>
+
+    <!-- 5. REVIEW/TESTIMONIALS SECTION -->
+    <section id="reviews" class="py-16 bg-gray-50 scroll-reveal-item">
+        <div class="container mx-auto px-6">
+            <header class="text-center mb-12">
+                <h3 class="text-[#2c9143] text-sm font-semibold uppercase tracking-wider">Happy Clients</h3>
+                <h2 class="text-4xl font-extrabold text-[#b38f4b] mt-2">What Our Customers Say</h2>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                
+                <!-- Review Card 1 (Abbreviated) -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#2c9143]">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#2c9143]/10 flex items-center justify-center font-bold text-[#2c9143] text-xl">YV</div>
+                        <div class="ml-4"><p class="font-semibold text-gray-900">Yathin Venky</p><p class="text-sm text-gray-500">Verified Buyer</p></div>
+                    </div>
+                    <p class="italic text-gray-700">"Dilip Ventures offered me a professional and transparent experience. The Director was keenly aware of my requirements and lined up 4-5 site visits instantly. Highly recommend!"</p>
+                    <div class="mt-4 text-xs text-right text-gray-400">— Via Google Reviews</div>
+                </div>
+
+                <!-- Review Card 2 (Abbreviated) -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#2c9143]">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#2c9143]/10 flex items-center justify-center font-bold text-[#2c9143] text-xl">NS</div>
+                        <div class="ml-4"><p class="font-semibold text-gray-900">Nilesh Shah</p><p class="text-sm text-gray-500">Satisfied Investor</p></div>
+                    </div>
+                    <p class="italic text-gray-700">"It was a pleasure dealing with the Dilip Ventures team. I was moving my property from Mumbai; the professionalism and thorough approach of the team made the entire process seamless."</p>
+                    <div class="mt-4 text-xs text-right text-gray-400">— Via Google Reviews</div>
+                </div>
+
+                <!-- Review Card 3 (Abbreviated) -->
+                <div class="review-card bg-white p-6 rounded-xl shadow-lg border-t-4 border-[#2c9143]">
+                    <div class="flex items-center mb-4">
+                        <div class="w-12 h-12 rounded-full bg-[#2c9143]/10 flex items-center justify-center font-bold text-[#2c9143] text-xl">YH</div>
+                        <div class="ml-4"><p class="font-semibold text-gray-900">Yamunamma H</p><p class="text-sm text-gray-500">First-Time Homeowner</p></div>
+                    </div>
+                    <p class="italic text-gray-700">"A clear person who has complete clarity in compliance and legalities. Thanks to his guidance I was well advised for the trials at the RERA court as well. Provides clear guidance."</p>
+                    <div class="mt-4 text-xs text-right text-gray-400">— Via Google Reviews</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!DOCTYPE html>
+<html lang="en">
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RERA Verification Section</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RERA Verification Section</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Custom Font Family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        /* Custom styles for input focus (using gold color) */
+        .form-input-gold:focus {
+            border-color: #b38f4b;
+            box-shadow: 0 0 0 3px rgba(179, 143, 75, 0.5); /* Gold ring */
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <!-- RERA VERIFICATION SECTION -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-6 max-w-7xl">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Text Content -->
+                <div class="lg:order-1">
+                    <h3 class="text-lg font-semibold uppercase tracking-wider text-[#b38f4b] mb-2">Government Verified</h3>
+                    <h2 class="text-4xl font-extrabold text-[#202a54] mb-6 leading-tight">
+                        Your Trusted <span class="text-[#b38f4b]">RERA Approved</span> Real Estate Partner
+                    </h2>
+                    <p class="text-gray-600 mb-8 text-lg">
+                        We pride ourselves on full transparency and compliance. As a **RERA registered and approved seller**, every property we list meets the stringent regulatory standards of the Real Estate Regulatory Authority. This ensures your investment is secure, verified, and legally sound.
+                    </p>
+                    <a href="#contact" 
+                       class="inline-flex items-center text-base font-semibold text-white bg-[#b38f4b] hover:bg-[#9c7b3c] px-6 py-3 rounded-xl shadow-lg transition duration-300">
+                        Verify Our Credentials
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-5 h-5 ml-2">
+                          <path stroke-linecap="round" stroke-linejoin="round" d="M17.25 8.25 21 12m0 0-3.75 3.75M21 12H3" />
+                        </svg>
+                    </a>
+                </div>
+
+                <!-- Image Area -->
+                <div class="lg:order-2 rounded-xl overflow-hidden shadow-2xl shadow-gray-300 transform transition duration-500 hover:scale-[1.01]">
+                    <!-- Placeholder for professional photo (Team, Office, or RERA Certificate) -->
+                    <img src= "images/rera.png"
+                         alt="RERA Approved Seller Photo" 
+                         class="w-full h-full object-cover">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. REQUIREMENTS POP-UP FORM (Hidden by default) -->
+    <div id="requirements-modal" class="fixed inset-0 z-50 hidden items-center justify-center p-4">
+        
+        <!-- Overlay -->
+        <div id="modal-overlay" class="absolute inset-0 bg-gray-900 opacity-75"></div>
+
+        <!-- Modal Content Container -->
+        <div class="bg-white rounded-xl shadow-2xl relative w-full max-w-lg mx-auto transform transition-all duration-300 scale-100 opacity-100">
+            
+            <!-- Close Button -->
+            <button id="close-modal-btn" class="absolute top-4 right-4 text-gray-400 hover:text-[#b38f4b] transition duration-200">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+
+            <!-- Form Header (using gold color) -->
+            <div class="bg-[#b38f4b] p-6 rounded-t-xl text-center">
+                <h3 class="text-2xl font-bold text-white">Unlock Exclusive Listings</h3>
+                <p class="text-sm text-gray-100 mt-1">Tell us your requirements and get personalized offers!</p>
+            </div>
+
+            <!-- Form Body -->
+            <form class="p-6 space-y-4">
+                <div>
+                    <label for="modal-name" class="block text-sm font-medium text-gray-700 mb-1">Your Full Name</label>
+                    <input type="text" id="modal-name" required class="form-input-gold w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 transition">
+                </div>
+                <div>
+                    <label for="modal-phone" class="block text-sm font-medium text-gray-700 mb-1">Phone Number</label>
+                    <input type="tel" id="modal-phone" required class="form-input-gold w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 transition">
+                </div>
+                <div>
+                    <label for="modal-requirements" class="block text-sm font-medium text-gray-700 mb-1">Property Requirements</label>
+                    <textarea id="modal-requirements" rows="3" placeholder="e.g., 3 BHK, budget 1-2 Cr, near Whitefield" required class="form-input-gold w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-1 transition"></textarea>
+                </div>
+
+                <button type="submit" class="w-full bg-[#202a54] text-white py-3 rounded-xl font-bold text-lg shadow-xl hover:bg-[#344070] transition duration-300">
+                    Get Personalized Call Back
+                </button>
+                <p class="text-xs text-center text-gray-500 pt-2">Your information is kept 100% confidential.</p>
+            </form>
+        </div>
+    </div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('requirements-modal');
+        const closeModalBtn = document.getElementById('close-modal-btn');
+        const modalOverlay = document.getElementById('modal-overlay');
+
+        // Function to show the modal
+        const showModal = () => {
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        };
+
+        // Function to hide the modal
+        const hideModal = () => {
+            modal.classList.remove('flex');
+            modal.classList.add('hidden');
+        };
+
+        // --- Core Logic: Show modal after 30 seconds ---
+        // This ensures the modal only appears once per page load.
+        setTimeout(showModal, 30000); // 30000 milliseconds = 30 seconds
+
+        // Event listeners for closing the modal
+        closeModalBtn.addEventListener('click', hideModal);
+        
+        // Hide modal if overlay is clicked
+        modalOverlay.addEventListener('click', hideModal);
+
+        // Basic form submission handler (prevent default action)
+        const form = modal.querySelector('form');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // In a real application, you would send this data to a server here.
+            console.log('Form Submitted. Hiding modal.');
+            // You can add a success message here before hiding.
+            hideModal();
+        });
+    });
+</script>
+
+</body>
+</html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animated Stats Counter Section</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define color variables based on your palette for consistency */
+        :root {
+            --primary-blue: #1179ec; /* Accent Color */
+            --primary-navy: #202a54; /* Dark Background */
+            --success-green: #2c9143; /* Success/WhatsApp Green */
+            --accent-yellow: #f6d200; /* Highlight */
+        }
+
+        /* Stats Card specific styles */
+        .stat-card {
+            background-color: var(--primary-navy);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+        /* Style for the number itself to ensure high contrast */
+        .stat-value {
+            color: white;
+            transition: color 0.1s; /* Quick transition for the random flicker effect */
+        }
+        .stat-label {
+            color: var(--accent-yellow);
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans">
+    
+    <!-- ANIMATED STATS COUNTER SECTION -->
+    <section id="stats-counter" class="py-20 bg-gray-900 border-t border-gray-800">
+        <div class="container mx-auto px-6 max-w-6xl">
+            <h2 class="text-4xl font-extrabold text-center text-white mb-12">Our Key Metrics</h2>
+
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+
+                <!-- Stat 1: Properties Listed -->
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <!-- Icon Placeholder: Document/Pencil -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[--primary-blue] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="16" y1="13" x2="8" y2="13"></line>
+                        <line x1="16" y1="17" x2="8" y2="17"></line>
+                        <line x1="10" y1="9" x2="8" y2="9"></line>
+                    </svg>
+                    <div class="flex items-center justify-center">
+                        <span id="stat1" class="stat-value text-6xl font-extrabold">0</span>
+                        <span class="text-4xl font-extrabold text-white pl-1">+</span>
+                    </div>
+                    <p class="stat-label text-xs uppercase font-semibold mt-2">PROPERTIES LISTED</p>
+                </div>
+
+                <!-- Stat 2: Locations Covers -->
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <!-- Icon Placeholder: Map Pin -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[--primary-blue] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                        <circle cx="12" cy="10" r="3"></circle>
+                    </svg>
+                    <div class="flex items-center justify-center">
+                        <span id="stat2" class="stat-value text-6xl font-extrabold">0</span>
+                        <span class="text-4xl font-extrabold text-white pl-1">+</span>
+                    </div>
+                    <p class="stat-label text-xs uppercase font-semibold mt-2">LOCATIONS COVERS</p>
+                </div>
+
+                <!-- Stat 3: Expert Agents -->
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <!-- Icon Placeholder: User/Person -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[--primary-blue] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                        <circle cx="8.5" cy="7" r="4"></circle>
+                        <line x1="20" y1="8" x2="20" y2="14"></line>
+                        <line x1="23" y1="11" x2="17" y2="11"></line>
+                    </svg>
+                    <div class="flex items-center justify-center">
+                        <span id="stat3" class="stat-value text-6xl font-extrabold">0</span>
+                        <span class="text-4xl font-extrabold text-white pl-1">+</span>
+                    </div>
+                    <p class="stat-label text-xs uppercase font-semibold mt-2">EXPERT AGENTS</p>
+                </div>
+
+                <!-- Stat 4: Properties Sold -->
+                <div class="stat-card p-6 rounded-lg shadow-xl">
+                    <!-- Icon Placeholder: Sold Sign -->
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 mx-auto text-[--primary-blue] mb-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                        <polyline points="14 2 14 8 20 8"></polyline>
+                        <line x1="10" y1="12" x2="14" y2="16"></line>
+                        <line x1="10" y1="16" x2="14" y2="12"></line>
+                    </svg>
+                    <div class="flex items-center justify-center">
+                        <span id="stat4" class="stat-value text-6xl font-extrabold">0</span>
+                        <span class="text-4xl font-extrabold text-white pl-1">+</span>
+                    </div>
+                    <p class="stat-label text-xs uppercase font-semibold mt-2">PROPERTIES SOLD</p>
+                </div>
+
+            </div>
+        </div>
+    </section>
+    
+    <script>
+        // Flag to ensure the animation only runs once
+        let animationStarted = false;
+
+        // Function to format numbers with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Function to perform the smooth count-up animation
+        function animateCounter(id, target, duration) {
+            const element = document.getElementById(id);
+            if (!element) return;
+
+            const startTime = performance.now();
+
+            function updateCounter(timestamp) {
+                const elapsed = timestamp - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                
+                // Use cubic ease-out for a smooth stopping effect
+                const easedProgress = 1 - Math.pow(1 - progress, 3); 
+                const currentValue = Math.floor(easedProgress * target);
+
+                element.textContent = formatNumber(currentValue);
+
+                if (progress < 1) {
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    // Ensure the final value is exactly the target
+                    element.textContent = formatNumber(target); 
+                }
+            }
+
+            requestAnimationFrame(updateCounter);
+        }
+        
+        // Function to simulate the initial rapid random counting effect ("running randomly")
+        function startRandomCounter(id, target, finalDuration) {
+            const element = document.getElementById(id);
+            if (!element) return;
+            
+            // Duration for the random flash phase (500ms)
+            const randomDuration = 500;
+            const startTime = performance.now();
+            
+            function randomPhase(timestamp) {
+                const elapsed = timestamp - startTime;
+                
+                if (elapsed < randomDuration) {
+                    // The number flashes rapidly and randomly on every frame
+                    const randomValue = Math.floor(Math.random() * (target * 1.5) + (target * 0.5));
+                    element.textContent = formatNumber(randomValue);
+                    
+                    // Quick color flicker for effect (optional)
+                    element.style.color = (Math.random() > 0.8) ? 'var(--accent-yellow)' : 'white';
+
+                    requestAnimationFrame(randomPhase);
+                } else {
+                    // Once the random phase is over, start the final, smooth count-up
+                    element.style.color = 'white'; // Reset color
+                    animateCounter(id, target, finalDuration);
+                }
+            }
+            
+            requestAnimationFrame(randomPhase);
+        }
+
+        // Targets and durations for each stat
+        const stats = [
+            // Target: 50,000 | Duration: 3.5 seconds
+            { id: 'stat1', target: 5000, duration: 3500 }, 
+            // Target: 200 | Duration: 2.8 seconds
+            { id: 'stat2', target: 200, duration: 2800 },    
+            // Target: 80 | Duration: 2.0 seconds
+            { id: 'stat3', target: 80, duration: 2000 },     
+            // Target: 1500 | Duration: 3.2 seconds
+            { id: 'stat4', target: 800, duration: 3200 }    
+        ];
+
+
+        // Intersection Observer setup to trigger animation on scroll
+        const observer = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting && !animationStarted) {
+                    stats.forEach(stat => {
+                        startRandomCounter(stat.id, stat.target, stat.duration);
+                    });
+                    animationStarted = true; // Set flag to true so it only runs once
+                    observer.unobserve(entry.target); // Stop observing once animated
+                }
+            });
+        }, {
+            threshold: 0.5 // Trigger when 50% of the section is visible
+        });
+
+        // Start observing the stats section once the page loads
+        window.onload = function() {
+            const statsSection = document.getElementById('stats-counter');
+            if (statsSection) {
+                observer.observe(statsSection);
+            }
+        };
+    </script>
+
+</body>
+</html>
+    <!-- 6. CONTACT US FORM SECTION (Replaced Enquiry CTA) -->
+    <section id="contact" class="py-16 bg-[#202a54] scroll-reveal-item">
+        <div class="container mx-auto px-6">
+            <header class="text-center mb-12">
+                <h2 class="text-4xl font-extrabold text-[#f6d200] mb-2">
+                    Let's Connect
+                </h2>
+                <p class="text-xl text-gray-300">
+                    Get in touch with our expert team for personalized real estate advice.
+                </p>
+            </header>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto p-8 bg-white rounded-xl shadow-2xl">
+                <!-- Left Column: Contact Form -->
+                <div>
+                    <h3 class="text-2xl font-bold text-[#202a54] mb-6">Send Us Your Query</h3>
+                    <form id="contactForm" class="space-y-4">
+                        <div>
+                            <label for="name" class="block text-sm font-medium text-gray-700">Full Name</label>
+                            <input type="text" id="name" name="name" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:border-[#1179ec] focus:ring-[#1179ec]">
+                        </div>
+                        <div>
+                            <label for="email" class="block text-sm font-medium text-gray-700">Email Address</label>
+                            <input type="email" id="email" name="email" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:border-[#1179ec] focus:ring-[#1179ec]">
+                        </div>
+                        <div>
+                            <label for="phone" class="block text-sm font-medium text-gray-700">Phone Number</label>
+                            <input type="tel" id="phone" name="phone" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:border-[#1179ec] focus:ring-[#1179ec]">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-sm font-medium text-gray-700">Your Requirements</label>
+                            <textarea id="message" name="message" rows="4" required class="mt-1 block w-full px-4 py-3 border border-gray-300 rounded-lg shadow-sm focus:border-[#1179ec] focus:ring-[#1179ec]"></textarea>
+                        </div>
+                        <button type="submit" class="w-full btn-gradient text-white text-lg font-bold px-4 py-3 rounded-lg shadow-md hover:shadow-lg transition">
+                            Submit Request
+                        </button>
+                        <p id="form-message" class="text-sm mt-3 text-center hidden text-[#2c9143] font-semibold">Thank you! Your enquiry has been sent.</p>
+                    </form>
+                </div>
+                
+                <!-- Right Column: Quick Contact Details -->
+                <div class="space-y-8 p-6 bg-gray-50 rounded-xl">
+                    <h3 class="text-2xl font-bold text-[#202a54] mb-4">Our Details</h3>
+                    
+                    <!-- Phone -->
+                    <div class="flex items-start space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#1179ec] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.128a11.028 11.028 0 006.294 6.294l1.128-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+                        <div>
+                            <p class="font-semibold text-gray-900">Call Us</p>
+                            <a href="tel:+919876543210" class="text-gray-600 hover:text-[#1179ec] transition duration-200">+91 72597 18729</a>
+                        </div>
+                    </div>
+                    
+                    <!-- Email -->
+                    <div class="flex items-start space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#1179ec] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-1 10a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v11z"/></svg>
+                        <div>
+                            <p class="font-semibold text-gray-900">Email Us</p>
+                            <a href="mailto:info@dilipventures.com" class="text-gray-600 hover:text-[#1179ec] transition duration-200">www.dilipventuress@gmail.com</a>
+                        </div>
+                    </div>
+
+                    <!-- Address -->
+                    <div class="flex items-start space-x-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-[#1179ec] flex-shrink-0 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.828 0l-4.243-4.243a8 8 0 1111.314 0z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"/></svg>
+                        <div>
+                            <p class="font-semibold text-gray-900">Office Location</p>
+                            <p class="text-gray-600">#189/1, 1st main road rajkumar statue,KHBS layout,mahalakshmi layout , banglore karnataka 560086</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 7. FOOTER -->
+    <footer class="bg-[#202a54] text-white py-8">
+        <div class="container mx-auto px-6 text-center">
+            <p class="text-sm mb-2">&copy; 2024 Dilip Ventures. All rights reserved.</p>
+            <div class="flex justify-center space-x-6">
+                <a href="#projects" class="text-gray-400 hover:text-[#f6d200] text-sm">Projects</a>
+                <a href="#reviews" class="text-gray-400 hover:text-[#f6d200] text-sm">Testimonials</a>
+                <a href="#contact" class="text-gray-400 hover:text-[#f6d200] text-sm">Contact</a>
+            </div>
+        </div>
+    </footer>
+    <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Social Media & Floating Contact</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        /* Define color variables for consistency */
+        :root {
+            --primary-navy: #202a54;
+            --whatsapp-green: #2c9143;
+            --accent-yellow: #f6d200;
+        }
+
+        /* --- Custom Styles for Floating WhatsApp Icon --- */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            z-index: 1000; /* Ensure it floats above other content */
+            background-color: var(--whatsapp-green);
+            transition: all 0.3s ease;
+        }
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+            box-shadow: 0 8px 15px rgba(44, 145, 67, 0.6);
+        }
+
+        /* --- Custom Styles for Social Icons (Optional but nice) --- */
+        .social-icon {
+            transition: transform 0.3s, background-color 0.3s;
+            color: var(--primary-navy);
+        }
+        .social-icon:hover {
+            transform: translateY(-4px);
+            color: var(--accent-yellow);
+        }
+
+        /* Adjust position on mobile to account for the fixed bottom contact bar, if you use one */
+        @media (max-width: 767px) {
+             .whatsapp-float {
+                bottom: 80px; /* Move it up if a mobile bar is present */
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-50 font-sans p-10">
+
+    <!-- 1. SOCIAL MEDIA NAVIGATION SECTION -->
+    <section id="social-nav" class="py-16 bg-white border-t border-b border-gray-100">
+        <div class="container mx-auto px-6 text-center max-w-3xl">
+            <h2 class="text-3xl font-extrabold text-[--primary-navy] mb-3">Follow Our Journey</h2>
+            <p class="text-lg text-gray-600 mb-8">
+                Stay updated with the latest project launches, market insights, and real estate news.
+            </p>
+
+            <div class="flex justify-center space-x-8">
+                
+                <!-- Facebook -->
+                <a href="https://www.facebook.com/DilipVentures" target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 hover:text-blue-600 transition duration-300" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 2C6.477 2 2 6.477 2 12c0 5.145 3.738 9.427 8.682 10.15V14.75H8.08V12h2.602V9.8c0-2.583 1.579-3.99 3.881-3.99 1.106 0 2.05.082 2.327.119v2.7h-1.638c-1.295 0-1.547.615-1.547 1.516V12h3.04l-.493 2.75h-2.547v7.382c4.944-.723 8.682-4.995 8.682-10.149C22 6.477 17.523 2 12 2z"/>
+                    </svg>
+                    <span class="sr-only">Facebook</span>
+                </a>
+
+                <!-- Instagram -->
+                <a href=https://www.instagram.com/dilip_ventures?igsh=a2tvaGJpOHVxcGN4 target="_blank" class="social-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 hover:text-pink-600 transition duration-300" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4c0 3.1-2.6 5.8-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8C2 4.6 4.6 2 7.8 2zm-.2 2A2.4 2.4 0 005 6.4v8.8c0 1.3 1.1 2.4 2.4 2.4h8.8c1.3 0 2.4-1.1 2.4-2.4V6.4c0-1.3-1.1-2.4-2.4-2.4H7.6zM12 7a5 5 0 100 10 5 5 0 000-10zm0 8a3 3 0 110-6 3 3 0 010 6zm5.8-9.4a1.2 1.2 0 100 2.4 1.2 1.2 0 000-2.4z"/>
+                    </svg>
+                    <span class="sr-only">Instagram</span>
+                </a>
+
+               <!-- LinkedIn Link -->
+                <a href=https://www.linkedin.com/in/dilip-r-918717335?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app target="_blank" 
+                   class="text-[#202a54] hover:text-[#b38f4b] transition duration-300 transform hover:scale-110">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.366-4-3.235-4 0v5.604h-3v-11h3v1.765c1.397-2.748 7-2.831 7 2.205v7.03z"/>
+                    </svg>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. FLOATING WHATSAPP BUTTON (Fixed Position) -->
+    <!-- This element is placed outside specific content sections to ensure it floats globally -->
+    <a href="https://wa.me/917259718729?text=Hello%20Dilip%20Ventures%2C%20I%20need%20quick%20assistance%20regarding%20a%20property%20or%20loan%20enquiry."
+       target="_blank"
+       rel="noopener noreferrer"
+       class="whatsapp-float flex items-center justify-center w-14 h-14 rounded-full shadow-2xl">
+        <!-- WhatsApp Icon (SVG) -->
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 text-white" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M12.04 2.16c-5.46 0-9.87 4.41-9.87 9.87 0 1.74.45 3.39 1.3 4.86L2.09 22l5.05-1.32c1.47.85 3.12 1.3 4.87 1.3 5.46 0 9.87-4.41 9.87-9.87S17.5 2.16 12.04 2.16zm0 18c-1.57 0-3.1-.4-4.44-1.16l-.32-.19-3.25.85.87-3.15-.2-.32c-.78-1.34-1.19-2.87-1.19-4.45 0-4.52 3.67-8.19 8.19-8.19 2.2 0 4.27.86 5.82 2.41a8.17 8.17 0 012.41 5.82c0 4.52-3.67 8.19-8.19 8.19zm4.86-5.49c-.27-.13-1.58-.78-1.82-.87-.24-.09-.41-.13-.59.13-.18.27-.69.87-.85 1.05-.16.18-.33.2-.61.05-.28-.14-1.18-.44-2.25-1.4-1.66-1.46-2.21-2.45-2.48-2.9-.27-.45-.03-.7-.2-.87-.16-.18-.36-.44-.54-.66-.18-.22-.38-.18-.54-.18-.16 0-.34-.02-.51-.02-.18 0-.47.05-.72.31-.25.26-.97.94-.97 2.29 0 1.35.99 2.65 1.13 2.84.14.19 1.93 2.95 4.69 4.13 2.76 1.18 2.95.83 3.48.78.53-.05 1.58-.64 1.8-1.25.22-.61.22-1.13.15-1.25-.07-.12-.24-.19-.51-.32z"/>
+        </svg>
+        <span class="sr-only">Chat on WhatsApp</span>
+    </a>
+
+</body>
+</html>
+
+
+    <!-- FIXED BOTTOM CONTACT BAR (Mobile Only) -->
+    <div class="fixed-contact-bar fixed bottom-0 left-0 right-0 bg-[#202a54] border-t border-[#1179ec]/50 h-16 shadow-xl justify-around items-center md:hidden">
+        <!-- Button 1: Call -->
+        <a href="tel:+917259718729" class="flex flex-col items-center justify-center w-1/4 text-white hover:text-[#f6d200] transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.128a11.028 11.028 0 006.294 6.294l1.128-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"/></svg>
+            <span class="text-xs mt-1">Call</span>
+        </a>
+        
+        <!-- Button 2: WhatsApp -->
+        <a id="whatsapp-mobile-cta" href="#" class="flex flex-col items-center justify-center w-1/4 text-white hover:text-[#f6d200] transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.58 15.34 3.4 16.81L2.06 22.08L7.54 20.73C9.07 21.57 10.79 22.01 12.51 22.01L12.52 22.01C17.99 22.01 22.44 17.56 22.44 12.09C22.44 6.62 17.98 2 12.52 2H12.04ZM12.05 3.63C17.02 3.63 21.05 7.66 21.05 12.64C21.05 17.61 17.02 21.64 12.05 21.64C10.51 21.64 8.98 21.23 7.62 20.45L6.96 20.08L3.92 20.84L4.72 17.99L4.25 17.27C3.41 15.84 3 14.24 3 12.64C3 7.66 7.03 3.63 12.05 3.63ZM16.59 14.97C16.32 15.68 15.7 16.34 14.73 16.71C13.78 17.08 12.83 17.26 11.88 17.26C9.9 17.26 8.1 16.59 6.74 15.23C5.37 13.87 4.7 12.07 4.7 10.09C4.7 9.14 4.88 8.19 5.25 7.22C5.62 6.25 6.28 5.63 7.01 5.36C7.3 5.26 7.63 5.26 7.91 5.38C8.18 5.48 8.41 5.7 8.54 5.97C8.74 6.34 8.78 6.74 8.66 7.15C8.54 7.55 8.28 7.92 8.08 8.13C7.88 8.33 7.74 8.52 7.74 8.71C7.74 8.9 7.85 9.17 7.96 9.43C8.07 9.69 8.27 10.03 8.56 10.46C8.84 10.89 9.21 11.36 9.68 11.83C10.15 12.3 10.62 12.67 11.05 12.96C11.48 13.25 11.82 13.45 12.08 13.56C12.34 13.67 12.61 13.78 12.8 13.78C13.17 13.78 13.55 13.69 13.91 13.49C14.32 13.37 14.72 13.41 15.09 13.61C15.36 13.74 15.58 13.97 15.68 14.24C15.8 14.52 15.8 14.85 15.68 15.14C15.42 15.82 16.29 16.38 16.59 14.97Z" /></svg>
+            <span class="text-xs mt-1">WhatsApp</span>
+        </a>
+        
+        <!-- Button 3: Email -->
+        <a href="mailto:info@dilipventures.com" class="flex flex-col items-center justify-center w-1/4 text-white hover:text-[#f6d200] transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8m-1 10a2 2 0 01-2 2H6a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v11z"/></svg>
+            <span class="text-xs mt-1">Email</span>
+        </a>
+
+        <!-- Button 4: Home/Website Link -->
+        <a href="#hero" class="flex flex-col items-center justify-center w-1/4 text-white hover:text-[#f6d200] transition duration-200">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/></svg>
+            <span class="text-xs mt-1">Home</span>
+        </a>
+    </div>
+
+    <!-- TIMED MODAL POPUP (Hidden by default - Removed timed trigger, but keeping structure for potential user requests) -->
+    <div id="timed-modal" class="fixed inset-0 hidden items-center justify-center opacity-0">
+        <div class="bg-white rounded-xl shadow-2xl max-w-lg w-full m-4 p-8 relative transform transition-all duration-500 scale-95">
+            <!-- Close Button -->
+            <button id="close-modal" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600 transition">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+            
+            <!-- Modal Header -->
+            <h3 class="text-3xl font-extrabold text-[#202a54] mb-3 border-b pb-3">
+                <span class="text-[#f6d200]">Quick</span> Requirement Check
+            </h3>
+            
+            <!-- Modal Body -->
+            <p class="text-gray-600 mb-6">
+                Don't waste time sifting through thousands of listings. Let us know your **budget, configuration (BHK), and location**, and get a curated list in minutes.
+            </p>
+
+            <!-- Call to Action Button -->
+            <button id="modal-cta" class="btn-gradient text-white text-lg font-bold px-8 py-3 w-full rounded-xl shadow-lg hover:shadow-xl transition">
+                Start My Custom Search Now
+            </button>
+        </div>
+    </div>
+    
+    <!-- JavaScript for Functionality and Animations -->
+    <script>
+        // WhatsApp Contact Info
+        const whatsappNumber = "917259718729"; 
+        const whatsappMessage = encodeURIComponent("Hello Dilip Ventures, I am contacting you from your website and would like to submit my property requirements.");
+        const whatsappUrl = `https://wa.me/$917259718729?text=$i am searching for the properties`;
+
+        // Smooth scrolling function for navigation links and banner CTA
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                const targetId = this.getAttribute('href');
+                if (targetId.length > 1) {
+                    e.preventDefault();
+                    document.querySelector(targetId).scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Set the WhatsApp link for the mobile CTA
+        document.getElementById('whatsapp-mobile-cta').href = whatsappUrl;
+
+        // --- Mock Form Submission Logic ---
+        document.getElementById('contactForm').addEventListener('submit', function(event) {
+            event.preventDefault(); 
+            
+            // In a real application, this is where an AJAX call would send data to the backend.
+            
+            // For this mock, we show a success message and clear the form.
+            const formMessage = document.getElementById('form-message');
+            formMessage.classList.remove('hidden');
+            this.reset(); // Clear the form fields
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
+
+        // --- Intersection Observer (Scroll Reveal) Logic ---
+        document.addEventListener("DOMContentLoaded", function() {
+            const observerOptions = {
+                root: null,
+                rootMargin: '0px',
+                threshold: 0.1 // Trigger when 10% of the element is visible
+            };
+
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target); // Stop observing once visible
+                    }
+                });
+            }, observerOptions);
+
+            // Select all major sections for scroll reveal
+            document.querySelectorAll('.scroll-reveal-item').forEach(item => {
+                observer.observe(item);
+            });
+        });
+
+        // --- Modal Logic (Kept non-timed as requested by structure change) ---
+        const modal = document.getElementById('timed-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+        const modalCtaBtn = document.getElementById('modal-cta');
+
+        function showModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modal.querySelector('div:nth-child(1)').classList.remove('scale-95');
+                modal.querySelector('div:nth-child(1)').classList.add('scale-100');
+            }, 10);
+        }
+
+        function hideModal() {
+            modal.classList.remove('opacity-100');
+            modal.querySelector('div:nth-child(1)').classList.remove('scale-100');
+            modal.querySelector('div:nth-child(1)').classList.add('scale-95');
+            
+            setTimeout(() => {
+                modal.classList.add('hidden');
+            }, 300); 
+        }
+
+        closeModalBtn.addEventListener('click', hideModal);
+        
+        modalCtaBtn.addEventListener('click', function() {
+            hideModal();
+            // Redirect the user to the Contact form
+            document.querySelector('#contact').scrollIntoView({ behavior: 'smooth' });
+        });
+
+        modal.addEventListener('click', function(e) {
+            if (e.target.id === 'timed-modal') {
+                hideModal();
+            }
+        });
+
+        // Note: The modal is currently hidden by default and is not triggered by a timer. 
+        // It remains in the code for easy access if a pop-up is desired later.
+    </script>
+
+</body>
+</html>
+
+
+
